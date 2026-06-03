@@ -20,12 +20,12 @@ import Settings      from "./Settings";
 import Help          from "./Help";
 
 // Smart Feature Pages
-import TrendingPGs      from "./TrendingPGs";
-import RecentlyViewed   from "./RecentlyViewed";
-import OffersDeals      from "./OffersDeals";
-import MyReviews        from "./MyReviews";
-import MyDocuments      from "./MyDocuments";
-import ReferAndEarn     from "./ReferAndEarn";
+import TrendingPGs      from "./Trendingpgs";
+import RecentlyViewed   from "./Recentlyviewed";
+import OffersDeals      from "./Offersdeals";
+import MyReviews        from "./Myreviews";
+import MyDocuments      from "./Mydocuments";
+import ReferAndEarn     from "./Referandearn";
 
 // ─── LANGUAGE DATA ────────────────────────────────────────────────────────
 const LANGS = {
