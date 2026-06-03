@@ -20,7 +20,6 @@ import Settings      from "./Settings";
 import Help          from "./Help";
 
 // Smart Feature Pages
-import TrendingPGs      from "./Trendingpgs";
 import RecentlyViewed   from "./Recentlyviewed";
 import OffersDeals      from "./Offersdeals";
 import MyReviews        from "./Myreviews";
