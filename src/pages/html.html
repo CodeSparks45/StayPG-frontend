@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDE Sheet - Day 2 Complete</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        body {
+            background-color: #1a1a1a;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 0;
+            gap: 40px;
+        }
+
+        .slide {
+            width: 800px;
+            height: 800px;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fbcfe8 50%, #f472b6 100%);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .code-window {
+            background-color: #fff7ed; 
+            border: 1px solid #fed7aa;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px -5px rgba(251, 146, 60, 0.3);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .code-header {
+            background-color: #ffedd5;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #fed7aa;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot-red { background-color: #ff5f56; }
+        .dot-yellow { background-color: #ffbd2e; }
+        .dot-green { background-color: #27c93f; }
+
+        pre[class*="language-"] {
+            margin: 0 !important;
+            padding: 24px !important;
+            background: transparent !important;
+            font-family: 'JetBrains Mono', monospace !important;
+            font-size: 14.5px !important;
+            line-height: 1.6 !important;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        
+        code[class*="language-"], pre[class*="language-"] {
+            color: #431407 !important;
+            text-shadow: none !important;
+        }
+
+        .problem-statement {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            margin-bottom: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide">
+        <div class="absolute top-6 right-8 text-pink-600 font-bold tracking-widest text-sm uppercase">#SDESheetChallenge • Day 2</div>
+        
+        <div class="problem-statement">
+            <h2 class="text-3xl font-bold text-gray-800 mb-3">53. Maximum Subarray</h2>
+            <p class="text-gray-800 text-base leading-relaxed">
+                <strong>Problem Statement:</strong> Given an integer array <code>nums</code>, find the subarray with the largest sum, and return its sum. Must solve in <strong>O(N)</strong> time.
+            </p>
+        </div>
+
+        <div class="code-window">
+            <div class="code-header">
+                <div class="dot dot-red"></div>
+                <div class="dot dot-yellow"></div>
+                <div class="dot dot-green"></div>
+                <div class="ml-4 text-sm font-semibold text-orange-800/60">KadanesAlgorithm.java</div>
+            </div>
+<pre><code class="language-java">class Solution {
+    public int maxSubArray(int[] nums) {
+        int maxSum = nums[0];
+        int currentSum = nums[0];
+
+        // Kadane's Algorithm: O(N) Time, O(1) Space
+        for (int i = 1; i < nums.length; i++) {
+            currentSum = Math.max(nums[i], currentSum + nums[i]);
+            maxSum = Math.max(maxSum, currentSum);
+        }
+
+        return maxSum;
+    }
+}</code></pre>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="absolute top-6 right-8 text-pink-600 font-bold tracking-widest text-sm uppercase">#SDESheetChallenge • Day 2</div>
+        
+        <div class="problem-statement">
+            <h2 class="text-3xl font-bold text-gray-800 mb-3">75. Sort Colors</h2>
+            <p class="text-gray-800 text-base leading-relaxed">
+                <strong>Problem Statement:</strong> Given an array <code>nums</code> with <code>n</code> objects colored red (0), white (1), or blue (2), sort them in-place. <br>
+                <em>Optimal: One-pass algorithm using constant extra space.</em>
+            </p>
+        </div>
+
+        <div class="code-window">
+            <div class="code-header">
+                <div class="dot dot-red"></div>
+                <div class="dot dot-yellow"></div>
+                <div class="dot dot-green"></div>
+                <div class="ml-4 text-sm font-semibold text-orange-800/60">DutchNationalFlag.java</div>
+            </div>
+<pre><code class="language-java">class Solution {
+    public void sortColors(int[] nums) {
+        // Dutch National Flag Algorithm (O(N) Time, O(1) Space)
+        int low = 0, mid = 0, high = nums.length - 1;
+
+        while (mid <= high) {
+            if (nums[mid] == 0) {
+                swap(nums, low, mid);
+                low++;
+                mid++;
+            } else if (nums[mid] == 1) {
+                mid++;
+            } else {
+                swap(nums, mid, high);
+                high--;
+            }
+        }
+    }
+
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}</code></pre>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="absolute top-6 right-8 text-pink-600 font-bold tracking-widest text-sm uppercase">#SDESheetChallenge • Day 2</div>
+        
+        <div class="problem-statement">
+            <h2 class="text-3xl font-bold text-gray-800 mb-3">121. Best Time to Buy and Sell Stock</h2>
+            <p class="text-gray-800 text-base leading-relaxed">
+                <strong>Problem Statement:</strong> You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock. Return the max profit.
+            </p>
+        </div>
+
+        <div class="code-window">
+            <div class="code-header">
+                <div class="dot dot-red"></div>
+                <div class="dot dot-yellow"></div>
+                <div class="dot dot-green"></div>
+                <div class="ml-4 text-sm font-semibold text-orange-800/60">Solution.java</div>
+            </div>
+<pre><code class="language-java">class Solution {
+    public int maxProfit(int[] prices) {
+        // Track the minimum price seen so far
+        int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        
+        // O(N) Time, O(1) Space
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] < minPrice) {
+                minPrice = prices[i];
+            } else if (prices[i] - minPrice > maxProfit) {
+                maxProfit = prices[i] - minPrice;
+            }
+        }
+        
+        return maxProfit;
+    }
+}</code></pre>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+</body>
+</html>
