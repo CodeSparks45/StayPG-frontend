@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SDE Sheet - Day 2 Complete</title>
+    <title>SDE Sheet - Day 3</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
     <style>
@@ -16,20 +16,50 @@
             flex-direction: column;
             align-items: center;
             padding: 40px 0;
-            gap: 40px;
+            gap: 60px;
         }
 
+        /* Changed to 800x1000 (4:5 Aspect Ratio). 
+           This is the optimal LinkedIn Portrait size and eliminates scrolling! 
+        */
         .slide {
             width: 800px;
-            height: 800px;
+            height: 1000px; 
             background: linear-gradient(135deg, #fdf2f8 0%, #fbcfe8 50%, #f472b6 100%);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             border-radius: 24px;
             padding: 40px;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
             position: relative;
+        }
+
+        .problem-statement {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .complexity-badges {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            background-color: #fff7ed;
+            color: #c2410c;
+            border: 1px solid #fed7aa;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .code-window {
@@ -40,7 +70,7 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            overflow: hidden; /* Prevent scrolling */
         }
 
         .code-header {
@@ -62,117 +92,32 @@
             padding: 24px !important;
             background: transparent !important;
             font-family: 'JetBrains Mono', monospace !important;
-            font-size: 14.5px !important;
+            font-size: 15px !important;
             line-height: 1.6 !important;
-            overflow-y: auto;
-            flex-grow: 1;
+            overflow: hidden !important; /* Forces it to stay in one frame */
         }
         
         code[class*="language-"], pre[class*="language-"] {
             color: #431407 !important;
             text-shadow: none !important;
         }
-
-        .problem-statement {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            padding: 24px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            margin-bottom: 24px;
-        }
     </style>
 </head>
 <body>
 
     <div class="slide">
-        <div class="absolute top-6 right-8 text-pink-600 font-bold tracking-widest text-sm uppercase">#SDESheetChallenge • Day 2</div>
+        <div class="absolute top-6 right-8 text-pink-600 font-bold tracking-widest text-sm uppercase">#SDESheetChallenge • Day 3</div>
         
         <div class="problem-statement">
-            <h2 class="text-3xl font-bold text-gray-800 mb-3">53. Maximum Subarray</h2>
-            <p class="text-gray-800 text-base leading-relaxed">
-                <strong>Problem Statement:</strong> Given an integer array <code>nums</code>, find the subarray with the largest sum, and return its sum. Must solve in <strong>O(N)</strong> time.
+            <h2 class="text-3xl font-bold text-gray-800 mb-3">48. Rotate Image</h2>
+            <p class="text-gray-800 text-lg leading-relaxed">
+                <strong>Problem Statement:</strong> You are given an <code>n x n</code> 2D matrix representing an image, rotate the image by 90 degrees (clockwise). You have to rotate the image <strong>in-place</strong>.
             </p>
         </div>
 
-        <div class="code-window">
-            <div class="code-header">
-                <div class="dot dot-red"></div>
-                <div class="dot dot-yellow"></div>
-                <div class="dot dot-green"></div>
-                <div class="ml-4 text-sm font-semibold text-orange-800/60">KadanesAlgorithm.java</div>
-            </div>
-<pre><code class="language-java">class Solution {
-    public int maxSubArray(int[] nums) {
-        int maxSum = nums[0];
-        int currentSum = nums[0];
-
-        // Kadane's Algorithm: O(N) Time, O(1) Space
-        for (int i = 1; i < nums.length; i++) {
-            currentSum = Math.max(nums[i], currentSum + nums[i]);
-            maxSum = Math.max(maxSum, currentSum);
-        }
-
-        return maxSum;
-    }
-}</code></pre>
-        </div>
-    </div>
-
-    <div class="slide">
-        <div class="absolute top-6 right-8 text-pink-600 font-bold tracking-widest text-sm uppercase">#SDESheetChallenge • Day 2</div>
-        
-        <div class="problem-statement">
-            <h2 class="text-3xl font-bold text-gray-800 mb-3">75. Sort Colors</h2>
-            <p class="text-gray-800 text-base leading-relaxed">
-                <strong>Problem Statement:</strong> Given an array <code>nums</code> with <code>n</code> objects colored red (0), white (1), or blue (2), sort them in-place. <br>
-                <em>Optimal: One-pass algorithm using constant extra space.</em>
-            </p>
-        </div>
-
-        <div class="code-window">
-            <div class="code-header">
-                <div class="dot dot-red"></div>
-                <div class="dot dot-yellow"></div>
-                <div class="dot dot-green"></div>
-                <div class="ml-4 text-sm font-semibold text-orange-800/60">DutchNationalFlag.java</div>
-            </div>
-<pre><code class="language-java">class Solution {
-    public void sortColors(int[] nums) {
-        // Dutch National Flag Algorithm (O(N) Time, O(1) Space)
-        int low = 0, mid = 0, high = nums.length - 1;
-
-        while (mid <= high) {
-            if (nums[mid] == 0) {
-                swap(nums, low, mid);
-                low++;
-                mid++;
-            } else if (nums[mid] == 1) {
-                mid++;
-            } else {
-                swap(nums, mid, high);
-                high--;
-            }
-        }
-    }
-
-    private void swap(int[] nums, int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-    }
-}</code></pre>
-        </div>
-    </div>
-
-    <div class="slide">
-        <div class="absolute top-6 right-8 text-pink-600 font-bold tracking-widest text-sm uppercase">#SDESheetChallenge • Day 2</div>
-        
-        <div class="problem-statement">
-            <h2 class="text-3xl font-bold text-gray-800 mb-3">121. Best Time to Buy and Sell Stock</h2>
-            <p class="text-gray-800 text-base leading-relaxed">
-                <strong>Problem Statement:</strong> You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock. Return the max profit.
-            </p>
+        <div class="complexity-badges">
+            <div class="badge">⏱️ Time Complexity: O(N²)</div>
+            <div class="badge">💾 Space Complexity: O(1)</div>
         </div>
 
         <div class="code-window">
@@ -183,21 +128,110 @@
                 <div class="ml-4 text-sm font-semibold text-orange-800/60">Solution.java</div>
             </div>
 <pre><code class="language-java">class Solution {
-    public int maxProfit(int[] prices) {
-        // Track the minimum price seen so far
-        int minPrice = Integer.MAX_VALUE;
-        int maxProfit = 0;
+    public void rotate(int[][] matrix) {
+        int n = matrix.length;
         
-        // O(N) Time, O(1) Space
-        for (int i = 0; i < prices.length; i++) {
-            if (prices[i] < minPrice) {
-                minPrice = prices[i];
-            } else if (prices[i] - minPrice > maxProfit) {
-                maxProfit = prices[i] - minPrice;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
             }
         }
         
-        return maxProfit;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n / 2; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[i][n - 1 - j];
+                matrix[i][n - 1 - j] = temp;
+            }
+        }
+    }
+}</code></pre>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="absolute top-6 right-8 text-pink-600 font-bold tracking-widest text-sm uppercase">#SDESheetChallenge • Day 3</div>
+        
+        <div class="problem-statement">
+            <h2 class="text-3xl font-bold text-gray-800 mb-3">56. Merge Intervals</h2>
+            <p class="text-gray-800 text-lg leading-relaxed">
+                <strong>Problem Statement:</strong> Given an array of <code>intervals</code> where <code>intervals[i] = [start, end]</code>, merge all overlapping intervals, and return an array of the non-overlapping intervals.
+            </p>
+        </div>
+
+        <div class="complexity-badges">
+            <div class="badge">⏱️ Time Complexity: O(N log N)</div>
+            <div class="badge">💾 Space Complexity: O(N)</div>
+        </div>
+
+        <div class="code-window">
+            <div class="code-header">
+                <div class="dot dot-red"></div>
+                <div class="dot dot-yellow"></div>
+                <div class="dot dot-green"></div>
+                <div class="ml-4 text-sm font-semibold text-orange-800/60">Solution.java</div>
+            </div>
+<pre><code class="language-java">class Solution {
+    public int[][] merge(int[][] intervals) {
+        if (intervals.length <= 1) return intervals;
+
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+
+        List<int[]> merged = new ArrayList<>();
+        int[] current = intervals[0];
+        merged.add(current);
+
+        for (int[] interval : intervals) {
+            if (current[1] >= interval[0]) {
+                current[1] = Math.max(current[1], interval[1]);
+            } else {
+                current = interval;
+                merged.add(current);
+            }
+        }
+        return merged.toArray(new int[merged.size()][]);
+    }
+}</code></pre>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="absolute top-6 right-8 text-pink-600 font-bold tracking-widest text-sm uppercase">#SDESheetChallenge • Day 3</div>
+        
+        <div class="problem-statement">
+            <h2 class="text-3xl font-bold text-gray-800 mb-3">88. Merge Sorted Array</h2>
+            <p class="text-gray-800 text-lg leading-relaxed">
+                <strong>Problem Statement:</strong> Merge <code>nums2</code> into <code>nums1</code> into a single array sorted in non-decreasing order. Modify <code>nums1</code> in-place.
+            </p>
+        </div>
+
+        <div class="complexity-badges">
+            <div class="badge">⏱️ Time Complexity: O(M + N)</div>
+            <div class="badge">💾 Space Complexity: O(1)</div>
+        </div>
+
+        <div class="code-window">
+            <div class="code-header">
+                <div class="dot dot-red"></div>
+                <div class="dot dot-yellow"></div>
+                <div class="dot dot-green"></div>
+                <div class="ml-4 text-sm font-semibold text-orange-800/60">Solution.java</div>
+            </div>
+<pre><code class="language-java">class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int p1 = m - 1;
+        int p2 = n - 1;
+        int pMerge = m + n - 1;
+        
+        while (p2 >= 0) {
+            if (p1 >= 0 && nums1[p1] > nums2[p2]) {
+                nums1[pMerge--] = nums1[p1--];
+            } else {
+                nums1[pMerge--] = nums2[p2--];
+            }
+        }
     }
 }</code></pre>
         </div>
